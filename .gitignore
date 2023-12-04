@@ -1,0 +1,38 @@
+# Django
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/*.db
+**/*.sqlite3
+
+# Static files
+**/static/
+
+# Media files
+**/media/
+
+# Virtual environment
+**/venv/
+**/env/
+**/*.env
+
+# Docker
+**/docker/mysql/
+
+# Local development settings
+**/local_settings.py
+
+# IDE files
+**/.vscode/
+**/.devcontainer/
+**/.idea/
+
+# Compiled Python files
+**/*.pyc
+
+# macOS
+**/.DS_Store
+
+# Windows
+**/Thumbs.db
