@@ -7,8 +7,9 @@
 </head>
 <body>
     <h1>
-        <a href="{% url "index" %}" style="color: inherit; text-decoration: none;">board</a>
+        <a href="{% if request.user.is_authenticated %}{% url "home" %}{% else %}{% url "index" %}{% endif %}" style="color: inherit; text-decoration: none;">board</a>
     </h1>
+    
 
     {% block body %}
     {% endblock body %}

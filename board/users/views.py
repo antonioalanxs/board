@@ -4,13 +4,11 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 def index(request):
-    if request.user.is_authenticated:
-        return redirect("home")
-
     return render(request, "users/index.html")
 
 
@@ -26,11 +24,12 @@ def login(request):
         )
         if user:
             auth_login(request, user)
-            return redirect("home")
+            return redirect(request.POST["next"] or "home")
 
     return render(request, "users/login.html")
 
 
+@login_required
 def logout(request):
     auth_logout(request)
     return redirect("index")
