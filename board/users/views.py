@@ -7,16 +7,9 @@ from django.contrib.auth import logout as auth_logout
 
 
 # Create your views here.
-def index(request):
-    if request.user.is_authenticated:
-        return render(request, "users/index.html")
-
-    return HttpResponseRedirect(reverse("login"))
-
-
 def login(request):
     if request.user.is_authenticated:
-        return render(request, "users/index.html")
+        return HttpResponseRedirect(reverse("index"))
 
     if request.method == "POST":
         user = authenticate(
