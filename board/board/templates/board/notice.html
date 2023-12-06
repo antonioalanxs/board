@@ -1,0 +1,13 @@
+{% extends "board/layout.html" %}
+
+{% block body %}
+    <h2>{{ notice.title }}</h2>
+
+    <div>{{ notice.content }}</div>
+
+    <div><span>Publish date: </span>{{ notice.publish_date }}</div>
+
+    <div><span>Author: </span>{{ notice.author }}</div>
+
+    <a href="{% url "home" %}">Back to Home</a>
+{% endblock body %}
