@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.shortcuts import redirect
 
 
 # Create your views here.
-def index(request):
+def home(request):
     if request.user.is_authenticated:
-        return render(request, "board/index.html")
+        return render(request, "board/home.html")
 
-    return HttpResponseRedirect(reverse("login"))
+    return redirect("index")

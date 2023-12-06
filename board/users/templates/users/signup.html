@@ -1,18 +1,18 @@
 {% extends "users/layout.html" %}
 
 {% block body %}
-    <h2>Log in</h2>
+    <h2>Sign up</h2>
 
     {% if message %}
         <span>{{ message }}</span>
     {% endif %}
 
-    <form action="{% url "login" %}" method="post">
+    <form action="{% url "signup" %}" method="post">
         {% csrf_token %}
         <input type="text" name="username">
         <input type="password" name="password">
-        <input type="submit" value="Log in">
+        <input type="submit" value="Sign up">
     </form>
 
-    <span>Do you not have an account? <a href="{% url 'signup' %}">Sign up</a></span>
+    <span>Do you have an account already? <a href="{% url 'login' %}">Log in</a></span>
 {% endblock body %}
