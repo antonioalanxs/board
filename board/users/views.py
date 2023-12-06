@@ -10,23 +10,27 @@ from django.contrib.auth import logout as auth_logout
 def index(request):
     if request.user.is_authenticated:
         return render(request, "users/index.html")
-        
+
     return HttpResponseRedirect(reverse("login"))
+
 
 def login(request):
     if request.user.is_authenticated:
         return render(request, "users/index.html")
-    
+
     if request.method == "POST":
-        user = authenticate(request, username=request.POST["username"], password=request.POST["password"])
+        user = authenticate(
+            request,
+            username=request.POST["username"],
+            password=request.POST["password"],
+        )
         if user:
             auth_login(request, user)
             return HttpResponseRedirect(reverse("index"))
-        
+
     return render(request, "users/login.html")
+
 
 def logout(request):
     auth_logout(request)
-    return render(request, "users/login.html", {
-        "message": "Logged out."
-    })
+    return render(request, "users/login.html", {"message": "Logged out."})
