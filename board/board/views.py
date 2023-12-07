@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+
 
 from .models import Notice
 
@@ -12,7 +14,7 @@ def home(request):
 
 
 @login_required
-def notice(request):
+def create(request):
     if request.method == "POST":
         notice = Notice(
             title=request.POST["title"],
@@ -26,9 +28,21 @@ def notice(request):
 
 
 @login_required
-def notice_detail(request, slug):
+def read(request, slug):
     return render(
         request,
-        "board/notice.html",
+        "board/read.html",
         {"notice": Notice.objects.get(slug=slug)}
     )
+
+
+@login_required
+def delete(request, slug):
+    notice = Notice.objects.get(slug=slug)
+
+    if request.user != notice.author:
+        raise PermissionDenied
+
+    notice.delete()
+
+    return redirect("home")

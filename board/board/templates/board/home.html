@@ -6,12 +6,16 @@
     <ul>
         {% for notice in notices %}
             <li>
-                <a href="{% url "notice_detail" notice.slug %}">{{ notice.title }}</a>
+                <a href="{% url "read" notice.slug %}">{{ notice.title }}</a>
+
+                {% if notice.author == request.user %}
+                    <a href="{% url "delete" notice.slug %}">Delete</a>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
 
-    <a href="{% url "notice" %}">Create a notice</a>
+    <a href="{% url "create" %}">Create a notice</a>
 
     <a href="{% url "logout" %}">Log out</a>
 {% endblock body %}

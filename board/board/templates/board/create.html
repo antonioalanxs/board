@@ -3,7 +3,7 @@
 {% block body %}
     <h2>Create a notice</h2>
 
-    <form action="{% url "notice" %}" method="post">
+    <form action="{% url "create" %}" method="post">
         {% csrf_token %}
         <input type="title" name="title" placeholder="Title" required>
         <textarea name="content" rows="7" placeholder="Content" required></textarea>
