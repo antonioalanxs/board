@@ -3,19 +3,22 @@
 {% block body %}
     <h2>Welcome, {{ request.user.username }}!</h2>
 
-    <ul>
-        {% for notice in notices %}
-            <li>
-                <a href="{% url "read" notice.slug %}">{{ notice.title }}</a>
+    {% for notice in notices %}
+        <div>
+            <a href="{% url "read" notice.slug %}">{{ notice.title }}</a>
+            
+            {% if notice.author == request.user %}
+                <a href="{% url "update" notice.slug %}">Update</a>
+                <a href="{% url "delete" notice.slug %}">Delete</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+    
+    <br>
 
-                {% if notice.author == request.user %}
-                    <a href="{% url "delete" notice.slug %}">Delete</a>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+    <a href="{% url "create" %}" style="display: block;">Create a notice</a>
 
-    <a href="{% url "create" %}">Create a notice</a>
+    <br>
 
-    <a href="{% url "logout" %}">Log out</a>
+    <a href="{% url "logout" %}" style="display: block;">Log out</a>
 {% endblock body %}

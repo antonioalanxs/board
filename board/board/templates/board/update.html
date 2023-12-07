@@ -1,0 +1,14 @@
+{% extends "board/layout.html" %}
+
+{% block body %}
+    <h2>Update a notice</h2>
+
+    <form action="{% url "update" notice.slug %}" method="post">
+        {% csrf_token %}
+        <input type="title" name="title" placeholder="Title" value="{{ notice.title }}" required>
+        <textarea name="content" rows="7" placeholder="Content" required>{{ notice.content }}</textarea>
+        <input type="submit" value="Update">
+    </form>
+
+    <a href="{% url "home" %}">Back to Home</a>
+{% endblock body %}

@@ -18,3 +18,6 @@ class Notice(models.Model):
         on_delete=models.CASCADE,
     )
     slug = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+
+    def is_author(self, request):
+        return self.author == request.user

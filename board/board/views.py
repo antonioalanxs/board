@@ -46,3 +46,23 @@ def delete(request, slug):
     notice.delete()
 
     return redirect("home")
+
+
+@login_required
+def update(request, slug):
+    notice = Notice.objects.get(slug=slug)
+
+    if request.user != notice.author:
+        raise PermissionDenied
+
+    if request.method == "POST":
+        notice.title = request.POST["title"]
+        notice.content = request.POST["content"]
+        notice.save()
+        return redirect("home")
+
+    return render(
+        request,
+        "board/update.html",
+        {"notice": notice}
+    )
