@@ -5,6 +5,7 @@
 **/*.pyd
 **/*.db
 **/*.sqlite3
+**/migrations/
 
 # Static files
 **/static/
