@@ -9,12 +9,36 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
+    """
+    Render the index page.
+
+    Args:
+        request (`HttpRequest`): The HTTP request object.
+
+    Returns:
+        `HttpResponse`: Rendered index page.
+    """
     return render(request, "users/index.html")
 
 
 def login(request):
+    """
+    Handle user login.
+
+    If the user is already authenticated, it redirects to the home page.
+
+    If the request method is `POST`, it authenticates the user with the provided username and password and redirects to the home page.
+
+    If the request method is `GET`, it renders the `users/login.html` template.
+
+    Args:
+        request (`HttpRequest`): The HTTP request object.
+
+    Returns:
+        `HttpResponse`: Rendered login page or redirects to home on successful login.
+    """
     if request.user.is_authenticated:
-        return redirect("index")
+        return redirect("home")
 
     if request.method == "POST":
         user = authenticate(
@@ -31,11 +55,33 @@ def login(request):
 
 @login_required
 def logout(request):
+    """
+    Handle user logout. This view requires the user to be logged in.
+
+    Args:
+        request (`HttpRequest`): The HTTP request object.
+
+    Returns:
+        `HttpResponse`: Redirects to index page.
+    """
     auth_logout(request)
     return redirect("index")
 
 
 def signup(request):
+    """
+    Handle user signup.
+
+    If the request method is `POST`, it creates a new user with the provided username and password and redirects to the home page.
+
+    If the request method is `GET`, it renders the `users/signup.html` template.
+
+    Args:
+        request (`HttpRequest`): The HTTP request object.
+
+    Returns:
+        `HttpResponse`: Rendered signup page or redirects to home on successful signup.
+    """
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
