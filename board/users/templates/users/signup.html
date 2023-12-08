@@ -1,18 +1,37 @@
-{% extends "users/layout.html" %}
+{% extends "config/base.html" %}
+
+{% block title %}Sign up / board{% endblock title %}
 
 {% block body %}
-    <h2>Sign up</h2>
-
-    {% if message %}
-        <span>{{ message }}</span>
-    {% endif %}
-
-    <form action="{% url "signup" %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Sign up">
-    </form>
-
-    <span>Do you have an account already? <a href="{% url 'login' %}">Log in</a></span>
+    <div class="min-h-screen grid place-content-center">
+        <div class="px-2 w-full max-w-[275px]">
+            <h1 class="mb-6">
+                <a href="
+                {% if request.user.is_authenticated %}
+                    {% url "home" %}
+                {% else %}
+                    {% url "index" %}
+                {% endif %}"
+                class="text-6xl font-bold">board</a>
+            </h1>
+            
+            <h2 class="mb-6 text-4xl font-bold">Sign up</h2>
+    
+            <form action="{% url "signup" %}" method="post" class="mb-4 flex gap-4 flex-col">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username" required class="py-3 pl-6 pr-9 text-lg border-[1.85px] rounded-full">
+    
+                <input type="password" name="password" placeholder="Password" required class="py-3 pl-6 pr-9 text-lg border-[1.85px] rounded-full">
+    
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+    
+                <input type="submit" value="Sign up" class="self-baseline px-7 py-2 text-lg font-medium text-white bg-slate-950 border rounded-full border-slate-950 cursor-pointer transition-transform active:scale-95">
+            </form>
+    
+            <div>
+                <a href="{% url 'login' %}" class="font-medium opacity-70 cursor-pointer">Have an account?</a>
+                <a href="{% url 'login' %}" class="font-medium text-blue-500 cursor-pointer">Log in</a>
+            </div>
+        </div>
+    </div>
 {% endblock body %}

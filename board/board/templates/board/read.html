@@ -1,13 +1,43 @@
-{% extends "board/layout.html" %}
+{% extends "config/base.html" %}
+
+{% load static %}
+
+{% block title %}{{ notice.title }} / board{% endblock title %}
 
 {% block body %}
-    <h2>{{ notice.title }}</h2>
+    <div class="min-h-screen flex justify-center">
+        <div class="px-8 lg:px-0 mt-8 w-full max-w-2xl">
+            <header class="mb-8 flex gap-1 items-center">
+                <a href="{% url "home" %}" class="p-2 transition-transform active:scale-75">
+                    <img src={% static "svg/back.svg" %} alt="Go back icon" class="w-8" />
+                </a>
 
-    <div>{{ notice.content }}</div>
+                <h1>
+                    <a href="
+                    {% if request.user.is_authenticated %}
+                        {% url "home" %}
+                    {% else %}
+                        {% url "index" %}
+                    {% endif %}"
+                    class="text-6xl font-bold">board</a>
+                </h1>
+            </header>
 
-    <div><span>Publish date: </span>{{ notice.publish_date }}</div>
+            <article>
+                <h2 class="mb-6 text-5xl sm:text-8xl font-bold" style="text-wrap: balance;">{{ notice.title }}</h2>
 
-    <div><span>Author: </span>{{ notice.author }}</div>
+                <time class="font-medium opacity-60">{{ notice.publish_date }}</time>
+                <div class="mb-6 font-medium opacity-60">{{ notice.author }}</div>
 
-    <a href="{% url "home" %}">Back to Home</a>
+                {% if notice.author == request.user %}
+                    <div class="mb-6 flex gap-2">
+                        <a href="{% url "update" notice.slug %}" class="px-4 py-2 text-sm font-medium text-white bg-slate-950 border rounded-full border-slate-950 cursor-pointer transition-transform active:scale-95">Update</a>
+                        <a href="{% url "delete" notice.slug %}" class="px-4 py-2 text-sm font-medium text-white bg-red-600 border rounded-full border-red-600 cursor-pointer transition-transform active:scale-95">Delete</a>
+                    </div>
+                {% endif %}
+
+                <p class="pb-6 text-lg font-[475]" style="text-wrap: balance;">{{ notice.content }}</p>
+            </article>
+        </div>
+    </div>
 {% endblock body %}

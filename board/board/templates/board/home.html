@@ -1,24 +1,58 @@
-{% extends "board/layout.html" %}
+{% extends "config/base.html" %}
+
+{% load static %}
+
+{% block title %}Home / board{% endblock title %}
 
 {% block body %}
-    <h2>Welcome, {{ request.user.username }}!</h2>
+    <div class="min-h-screen flex justify-center items-center">
+        <div class="px-8 sm:px-0 w-full max-w-lg">
+            <div class="mb-5 sm:flex sm:justify-between">
+                <h1>
+                    <a href="
+                    {% if request.user.is_authenticated %}
+                        {% url "home" %}
+                    {% else %}
+                        {% url "index" %}
+                    {% endif %}"
+                    class="text-6xl font-bold">board</a>
+                </h1>
 
-    {% for notice in notices %}
-        <div>
-            <a href="{% url "read" notice.slug %}">{{ notice.title }}</a>
+                <a href="{% url "create" %}" class="self-end hidden sm:block p-3 bg-black rounded-full transition-transform active:scale-95">
+                    <img src={% static "svg/create.svg" %} alt="Create a notice icon" class="w-5" />
+                </a>
+            </div>
+
+            <div class="mb-3 flex gap-2 items-center">
+                <div class="relative h-[10px] w-[10px] mt-1 flex">
+                    <div class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></div>
+                    <div class="relative inline-flex rounded-full h-[10px] w-[10px] bg-green-500"></div>
+                </div>
+                <div class="text-lg font-semibold opacity-75">{{ request.user.username }}</div>
+            </div>
             
-            {% if notice.author == request.user %}
-                <a href="{% url "update" notice.slug %}">Update</a>
-                <a href="{% url "delete" notice.slug %}">Delete</a>
-            {% endif %}
+            <section>
+                <h2 class="mb-6 pb-3 border-b border-b-black text-3xl sm:text-4xl font-bold">Latest posts</h2>
+
+                {% for notice in notices %}
+                    <a href="{% url "read" notice.slug %}" class="block mb-8">
+                        <article>
+                            <h3 class="mb-2 text-3xl sm:text-4xl font-bold" style="text-wrap: balance;">{{ notice.title }}</h3>
+                            <div class="text-sm sm:text-base opacity-75">{{ notice.publish_date }}</div>
+                            <div class="-mt-1 text-sm sm:text-base opacity-75">{{ notice.author }}</div>
+                        </article>
+                    </a>
+                {% endfor %}
+
+            </section>
         </div>
-    {% endfor %}
-    
-    <br>
+    </div>
 
-    <a href="{% url "create" %}" style="display: block;">Create a notice</a>
+    <a href="{% url "create" %}" class="sm:hidden absolute bottom-5 right-5 p-3 bg-black rounded-full transition-transform active:scale-95">
+        <img src={% static "svg/create.svg" %} alt="Create a notice icon" class="w-5" />
+    </a>
 
-    <br>
-
-    <a href="{% url "logout" %}" style="display: block;">Log out</a>
+    <a href="{% url "logout" %}" class="absolute top-4 right-5 p-3 bg-black rounded-full transition-transform active:scale-95">
+        <img src={% static "svg/logout.svg" %} alt="Log out icon" class="w-5" />
+    </a>
 {% endblock body %}

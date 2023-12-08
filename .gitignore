@@ -7,9 +7,6 @@
 **/*.sqlite3
 **/migrations/
 
-# Static files
-**/static/
-
 # Media files
 **/media/
 
