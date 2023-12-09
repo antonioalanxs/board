@@ -5,7 +5,8 @@
 **/*.pyd
 **/*.db
 **/*.sqlite3
-**/migrations/
+**/migrations/*
+!**/migrations/__init__.py
 
 # Media files
 **/media/
@@ -20,7 +21,7 @@
 **/*.env
 
 # Docker
-**/docker/mysql/
+**/mysql/
 
 # Local development settings
 **/local_settings.py
