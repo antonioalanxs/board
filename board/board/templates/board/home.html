@@ -7,7 +7,7 @@
 {% block body %}
     <div class="min-h-screen flex justify-center items-center">
         <div class="px-8 sm:px-0 w-full max-w-lg">
-            <div class="mb-5 sm:flex sm:justify-between">
+            <div class="my-6 sm:flex sm:justify-between">
                 <h1>
                     <a href="
                     {% if request.user.is_authenticated %}
@@ -52,7 +52,7 @@
         <img src={% static "board/img/create.svg" %} alt="Create a notice icon" class="w-5" />
     </a>
 
-    <a href="{% url "logout" %}" class="absolute top-4 right-5 p-3 bg-black rounded-full transition-transform active:scale-95">
+    <a href="{% url "logout" %}" class="fixed top-4 right-5 p-3 bg-black rounded-full transition-transform active:scale-95">
         <img src={% static "board/img/logout.svg" %} alt="Log out icon" class="w-5" />
     </a>
 {% endblock body %}
