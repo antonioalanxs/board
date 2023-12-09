@@ -8,6 +8,22 @@ from .models import Notice
 
 
 # Create your views here.
+def index(request):
+    """
+    Render the index page. If the user is already authenticated, it redirects to the home page.
+
+    Args:
+        request (`HttpRequest`): The HTTP request object.
+
+    Returns:
+        `HttpResponse`: Rendered index page.
+    """
+    if request.user.is_authenticated:
+        return redirect("home")
+
+    return render(request, "board/index.html")
+
+
 @login_required
 def home(request):
     """

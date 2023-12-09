@@ -8,19 +8,6 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-def index(request):
-    """
-    Render the index page.
-
-    Args:
-        request (`HttpRequest`): The HTTP request object.
-
-    Returns:
-        `HttpResponse`: Rendered index page.
-    """
-    return render(request, "users/index.html")
-
-
 def login(request):
     """
     Handle user login.
