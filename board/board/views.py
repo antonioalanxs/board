@@ -39,7 +39,7 @@ def home(request):
     return render(
         request,
         "board/home.html",
-        {"notices": Notice.objects.all()}
+        {"notices": Notice.objects.all().order_by("-publish_date")}
     )
 
 
