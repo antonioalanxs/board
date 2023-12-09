@@ -1,0 +1,59 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "antonioalanxs",
+            "password": "pbkdf2_sha256$720000$Uil68tbFTX4lDmUSlPoWFh$s/vk4hp05gb/d0CTO+nbx5PYFKQgQkS+bDG/f0So29c="
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "username": "teresavrod",
+            "password": "pbkdf2_sha256$720000$Uil68tbFTX4lDmUSlPoWFh$s/vk4hp05gb/d0CTO+nbx5PYFKQgQkS+bDG/f0So29c="
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "username": "antoniomanuel",
+            "password": "pbkdf2_sha256$720000$Uil68tbFTX4lDmUSlPoWFh$s/vk4hp05gb/d0CTO+nbx5PYFKQgQkS+bDG/f0So29c="
+        }
+    },
+    {
+        "model": "board.notice",
+        "pk": 1,
+        "fields": {
+            "title": "The Power of AI",
+            "content": "In the ever-evolving landscape of technology, Artificial Intelligence (AI) continues to capture our imagination. From machine learning to natural language processing, AI is reshaping the way we interact with the world. This article delves into the wonders of AI, examining its applications in diverse fields such as healthcare, finance, and education. As AI becomes an integral part of our daily lives, understanding its potential and implications is more crucial than ever.",
+            "publish_date": "2023-11-09T14:00:00Z",
+            "author": "antonioalanxs",
+            "slug": "3e2e62cf-35f2-4d8e-9244-8649a4748c52"
+        }
+    },
+    {
+        "model": "board.notice",
+        "pk": 2,
+        "fields": {
+            "title": "Quantum Computing Unveiled",
+            "content": "Quantum computing, a groundbreaking frontier in the world of computing, promises unprecedented computational power. This article takes a deep dive into the fundamental concepts of quantum computing, exploring qubits, superposition, and entanglement. With companies and researchers racing to build practical quantum computers, we examine the potential impact on cryptography, optimization problems, and drug discovery. Join us on this journey as we unravel the mysteries of quantum computing.",
+            "publish_date": "2023-12-09T13:00:00Z",
+            "author": "antoniomanuel",
+            "slug": "e1a1e3b1-11a1-4bfb-b551-60a0c92c48b4"
+        }
+    },
+    {
+        "model": "board.notice",
+        "pk": 3,
+        "fields": {
+            "title": "Green Revolution: A Sustainable Future",
+            "content": "In the face of environmental challenges, the call for sustainable living has never been louder. This article explores the Green Revolution, a global movement towards eco-friendly practices and renewable energy. From solar power to sustainable agriculture, we examine the initiatives driving positive change. Discover how individuals, businesses, and governments are working together to create a more sustainable future. Join us on the path to a greener, cleaner world.",
+            "publish_date": "2023-12-09T14:00:00Z",
+            "author": "teresavrod",
+            "slug": "69a7d62b-6b94-4da8-953a-5cfaf837aaf0"
+        }
+    }
+]
