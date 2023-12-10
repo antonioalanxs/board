@@ -12,6 +12,3 @@ RUN pip install -r requirements.txt
 
 # Expose port 8000 to allow external connections to the application
 EXPOSE 8000
-
-# Set the default command to run when the container starts
-CMD ["sh", "-c", "python manage.py flush --noinput && python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py loaddata fixtures/seed.json && python manage.py runserver 0.0.0.0:8000"]
