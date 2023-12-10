@@ -1,0 +1,25 @@
+{% extends "config/base.html" %}
+
+{% block title %}board{% endblock title %}
+
+{% block body %}
+    <main class="min-h-screen grid place-content-center text-center">
+        <h1 class="mb-3">
+            <a href="
+            {% if request.user.is_authenticated %}
+                {% url "home" %}
+            {% else %}
+                {% url "index" %}
+            {% endif %}"
+            class="text-7xl font-bold">board</a>
+        </h1>
+
+        <p class="mb-4 text-2xl font-medium opacity-60 mx-[6px]" style="text-wrap: balance;">Write. Publish. Learn.</p>
+
+        <div class="flex gap-3 justify-center">
+            <a href="{% url 'login' %}" class="px-8 py-3 text-xl font-medium text-white bg-slate-950 border rounded-full border-slate-950 cursor-pointer transition-transform active:scale-95">Log in</a>
+
+            <a href="{% url 'signup' %}" class="px-8 py-3 text-xl font-medium border-2 rounded-full border-gray-300 cursor-pointer transition-transform active:scale-95">Sign up</a>
+        </div>
+    </main>
+{% endblock body %}

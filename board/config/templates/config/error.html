@@ -1,0 +1,41 @@
+{% extends "config/base.html" %}
+
+{% load static %}
+
+{% block title %}Error / board{% endblock title %}
+
+{% block body %}
+    <div class="min-h-screen flex justify-center items-center">
+        <article class="px-8 lg:px-0 w-full max-w-lg">
+            <h1 class="mb-8">
+                <a href="
+                {% if request.user.is_authenticated %}
+                    {% url "home" %}
+                {% else %}
+                    {% url "index" %}
+                {% endif %}"
+                class="text-6xl font-bold">board</a>
+            </h1>
+            
+            <h2 class="mb-9 text-4xl sm:text-6xl font-bold" style="text-wrap: balance;">
+                Oops! An <span class="text-red-600 underline underline-offset-8 decoration-wavy">error</span> ocurred...
+            </h2>
+
+            <picture>
+                <img src="{% static "board/img/this-is-fine.gif" %}" alt="Error image" class="w-full h-full object-cover" />
+            </picture>
+
+            <h3 class="my-[18px] text-center text-lg sm:text-xl font-medium opacity-70" style="text-wrap: balance;">
+                Something went wrong, but do not worry, it is not your fault.
+            </h3>
+
+            <a href="
+            {% if request.user.is_authenticated %}
+                {% url "home" %}
+            {% else %}
+                {% url "index" %}
+            {% endif %}"
+            class="block w-fit mx-auto px-20 py-3 text-xl font-medium text-white bg-slate-950 border rounded-full border-slate-950 cursor-pointer transition-transform active:scale-95">Exit</a>
+        </div>
+    </div>
+{% endblock body %}

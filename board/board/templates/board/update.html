@@ -1,0 +1,39 @@
+{% extends "config/base.html" %}
+
+{% load static %}
+
+{% block title %}Updating {{ notice.title }} / board{% endblock title %}
+
+{% block body %}
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="px-8 w-full max-w-lg">
+            <header class="mb-8 flex gap-1 items-center">
+                <a href="{% url "home" %}" class="p-2 transition-transform active:scale-75">
+                    <img src={% static "board/img/back.svg" %} alt="Go back icon" class="w-8" />
+                </a>
+
+                <h1>
+                    <a href="
+                    {% if request.user.is_authenticated %}
+                        {% url "home" %}
+                    {% else %}
+                        {% url "index" %}
+                    {% endif %}"
+                    class="text-6xl font-bold">board</a>
+                </h1>
+            </header>
+            
+            <h2 class="mb-6 text-4xl font-bold">Updating {{ notice.title }}</h2>
+
+            <form action="{% url "update" notice.slug %}" method="post" class="mb-4 flex gap-4 flex-col">
+                {% csrf_token %}
+                <input type="title" name="title" placeholder="Title" value="{{ notice.title }}" required class="py-3 pl-4 text-lg border-[1.85px] rounded-2xl">
+
+                <textarea name="content" rows="9" placeholder="Content" required class="py-3 pl-4 text-lg border-[1.85px] rounded-2xl">{{ notice.content }}</textarea>
+
+                <input type="submit" value="Update" class="self-baseline px-7 py-2 text-lg font-medium text-white bg-slate-950 border rounded-full border-slate-950 cursor-pointer transition-transform active:scale-95">
+            </form>
+        </div>
+    </div>
+{% endblock body %}
+

@@ -1,0 +1,5 @@
+Django==5.0
+mysqlclient==2.2.0
+autopep8==2.0.4
+uuid==1.30
+whitenoise==6.6.0
