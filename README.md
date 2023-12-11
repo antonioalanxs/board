@@ -21,7 +21,7 @@
 
 board is a minimalist notice board built using [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), [Tailwind CSS](https://tailwindcss.com/), [Django](https://www.djangoproject.com/), [MySQL](https://www.mysql.com/), [phpMyAdmin](https://www.phpmyadmin.net/) and [Docker](https://www.docker.com/). 
 
-This web application was used to give a lecture on the operation of Django and its security mechanisms. This lecture covers topics such as user authentication, URL protection, Middleware, CORS and CSRF Attack/Defense strategies.
+This web application was used to give a lecture on the operation of Django and its security mechanisms. This lecture covers topics such as User Authentication, URL protection, Middleware, CORS and CSRF Attack/Defense strategies.
 
 ### Demonstration of the application
 
@@ -31,7 +31,7 @@ This web application was used to give a lecture on the operation of Django and i
 
 ### Prerequisites
 
-Have [Docker](https://docs.docker.com/engine/install/) installed on your machine.
+Have [Docker](https://docs.docker.com/engine/install) installed on your machine.
 
 ### Cloning the Repository
 
@@ -71,7 +71,7 @@ The application was turned off.
   
 2.  Select the `slug` of the user's notice that you want to edit attacking it. You can do this using [phpMyAdmin](http://localhost:8080) or by looking at the notice URL.
 
-3.  Change current working directory to `attack-server` and Run Attack Server on [localhost:5500](http://localhost:5500) (e.g., `python -m http.server 5500`).
+3.  Change the current working directory to `attack-server` and Run Attack Server on [localhost:5500](http://localhost:5500) (e.g., `python -m http.server 5500`).
 
 4.  Go to [localhost:5500](http://localhost:5500) and the Attack Server will execute the following code:
 
@@ -146,4 +146,3 @@ The application was turned off.
 - **CSRF Attack and Defense Strategies**: Explored the concept of Cross-Site Request Forgery (CSRF) attacks and gained insights into both launching and defending against such attacks. Developed strategies to implement CSRF protection measures in web applications, ensuring the security of user data and interactions.
 
 - **Enhanced communication skills**: Strengthened communication abilities through giving the lecture, enhancing my ability to communicate ideas effectively.
-
