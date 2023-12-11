@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Overview](#overview)
-    - [Demonstration Video](#demonstration)
+    - [Demonstration of the application](#demonstration-of-the-application)
 2. [Installation](#installation)
     - [Prerequisites](#prerequisites)
     - [Cloning the Repository](#cloning-the-repository)
@@ -11,7 +11,7 @@
     - [Sample users](#sample-users)
     - [Stop the application](#stop-the-application)
 3. [Do the CSRF Attack](#do-the-csrf-attack)
-    - [Demonstration Video](#demonstration)
+    - [Demonstration of the CSRF Attack](#demonstration-of-the-csrf-attack)
 4. [Features](#features)
     - [Functional Requirements](#functional-requeriments)
     - [Non-functional Requirements](#non-functional-requirements)
@@ -23,7 +23,7 @@ board is a minimalist notice board built using [HTML](https://developer.mozilla.
 
 This web application was used to give a lecture on the operation of Django and its security mechanisms. This lecture covers topics such as user authentication, URL protection, Middleware, CORS and CSRF Attack/Defense strategies.
 
-### Demonstration
+### Demonstration of the application
 
 <video src="https://github.com/antonioalanxs/board/assets/79718376/a3d8ddd6-486b-4007-bb52-db1aba3a1e6f" alt="Application Video Demonstration"></video>
 
@@ -67,8 +67,6 @@ The application was turned off.
 
 ## Do the CSRF Attack
 
-
-
 1.  [Run the application](#run-the-application) and log in with an [user](#sample-users). This will cause the browser to save its `sessionid`.
   
 2.  Select the `slug` of the user's notice that you want to edit attacking it. You can do this using [phpMyAdmin](http://localhost:8080) or by looking at the notice URL.
@@ -93,7 +91,7 @@ The application was turned off.
         .catch(err => console.error(err));
     ```
 
-### Demonstration
+### Demonstration of the CSRF Attack
 
 <video src="https://github.com/antonioalanxs/board/assets/79718376/7194f1a5-bd2e-4bb7-8920-38da6725c05f" alt="Attack Video Demonstration"></video>
 
