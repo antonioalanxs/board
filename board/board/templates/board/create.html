@@ -26,7 +26,7 @@
             <h2 class="mb-6 text-4xl font-bold">Create a notice</h2>
 
             <form action="{% url "create" %}" method="post" class="mb-4 flex gap-4 flex-col">
-                {% csrf_token %}
+                {% comment %} {% csrf_token %} {% endcomment %}
                 <input type="title" name="title" placeholder="Title" required class="py-3 pl-4 text-lg border-[1.85px] rounded-2xl">
 
                 <textarea name="content" rows="9" placeholder="Content" required class="py-3 pl-4 text-lg border-[1.85px] rounded-2xl"></textarea>
